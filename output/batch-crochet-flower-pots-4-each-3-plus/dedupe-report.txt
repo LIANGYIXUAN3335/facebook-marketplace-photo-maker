@@ -1,0 +1,4 @@
+Input photos: 5
+Unique generated: 4
+Duplicates skipped:
+- 5-Photo-5.jpg duplicates 1-Photo-1.jpg
