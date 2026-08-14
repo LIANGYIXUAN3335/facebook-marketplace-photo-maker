@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Facebook Marketplace Photo Maker</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Local photo batch tool</p>
+          <h1>Facebook Marketplace Photo Maker</h1>
+          <p class="subtitle">
+            上传商品照片和价格，批量生成右上角带醒目优惠标签的 Marketplace 方形商品图。
+          </p>
+        </div>
+        <div class="stats">
+          <div>
+            <strong id="photoCount">0</strong>
+            <span>photos</span>
+          </div>
+          <div>
+            <strong>1080</strong>
+            <span>px output</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel controls">
+        <label class="dropzone" id="dropzone">
+          <input id="fileInput" type="file" accept="image/*" multiple />
+          <span class="drop-title">Drop photos here or click to choose</span>
+          <span class="drop-copy">支持 JPG / PNG / WebP，多选后逐个填价格。</span>
+        </label>
+
+        <div class="form-grid">
+          <label>
+            Default location
+            <input id="defaultLocation" type="text" value="Local pickup" />
+          </label>
+          <label>
+            Default tag
+            <input id="defaultTag" type="text" value="Good condition" />
+          </label>
+          <label>
+            Price prefix
+            <input id="pricePrefix" type="text" value="$" />
+          </label>
+          <label>
+            Default bulk qty
+            <input id="defaultBulkQty" type="text" value="3" />
+          </label>
+          <label>
+            Default bulk price
+            <input id="defaultBulkPrice" type="text" placeholder="例如：8" />
+          </label>
+          <label>
+            Template
+            <select id="templateSelect">
+              <option value="clean">Clean white</option>
+              <option value="warm">Warm shelf</option>
+              <option value="graphite">Graphite</option>
+              <option value="blue">Fresh blue</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button id="generateBtn" type="button">Generate previews</button>
+          <button id="downloadZipBtn" type="button" disabled>Download ZIP</button>
+          <button id="applyDealBtn" class="secondary" type="button">
+            Apply deal to all
+          </button>
+          <button id="clearBtn" class="secondary" type="button">Clear</button>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="panel">
+          <div class="section-title">
+            <h2>Items</h2>
+            <p>每张照片可以单独设置价格和标题。</p>
+          </div>
+          <div id="itemsList" class="items empty">
+            <p>还没有照片。先上传几张商品图。</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="section-title">
+            <h2>Generated photos</h2>
+            <p>生成后可以单张下载，也可以打包 ZIP。</p>
+          </div>
+          <div id="outputGrid" class="outputs empty">
+            <p>预览会显示在这里。</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <template id="itemTemplate">
+      <article class="item-row">
+        <img class="thumb" alt="" />
+        <div class="item-fields">
+          <label>
+            Title
+            <input class="item-title" type="text" placeholder="例如：Wood desk" />
+          </label>
+          <label>
+            Single price
+            <input class="item-price" type="text" placeholder="例如：45" />
+          </label>
+          <label>
+            Bulk qty
+            <input class="item-bulk-qty" type="text" placeholder="例如：3" />
+          </label>
+          <label>
+            Bulk price each
+            <input class="item-bulk-price" type="text" placeholder="例如：35" />
+          </label>
+          <label>
+            Tag
+            <input class="item-tag" type="text" placeholder="例如：Like new" />
+          </label>
+        </div>
+        <button class="remove-btn" type="button" aria-label="Remove item">Remove</button>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
